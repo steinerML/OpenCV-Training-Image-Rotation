@@ -5,12 +5,9 @@ I have used the following functions/methods:
 
 | Function        |Action                                                                        |
 |----------------:|------------------------------------------------------------------------------|
-|cv2.VideoCapture | Creates a video capture object, which would help stream or display the video.|
-|cv2.VideoWriter  | Saves the output video to a directory.                                       |
-|     cv2.imshow()|  Displays image.                                                             |
-|    cv2.waitKey()|  Wait for key.                                                               |
-|     get()       |  Retrieves video metadata                                                    |
-
+|cv2.imread()              | We read the image                                                   |
+|cv2.getRotationMatrix2D() | We get the rotation matrix.                                         |
+|cv2.warpAffine()          |  We rotate the image using the rotation matrix                      |
 
 
 ## Test Image used: 
@@ -21,7 +18,12 @@ I have used image-15.png that can be found in the repository.
 ## Summary:
 
 ```python
-#Slicing to crop the image
-cropped_image = img[80:280, 150:330]
+# By using getRotationMatrix2D() we get the rotation matrix :)
+rotate_matrix = cv2.getRotationMatrix2D(center=center, angle=45, scale=1)
+```
 
+```python
+#We rotate the image using cv2.warpAffine
+#We could have used the borderMode or borderValue if we wished.
+rotated_image = cv2.warpAffine(src=image, M=rotate_matrix, dsize=(width, height))
 ```
